@@ -273,19 +273,33 @@
     border-color: var(--gold);
     color: var(--gold);
   }
+
+  button:focus-visible,
+  .dashboard-link:focus-visible,
+  .dash-close:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reflection,
+    .bar-fill {
+      transition: none !important;
+    }
+  }
 </style>
 </head>
 <body>
   <div class="container">
     <div class="wordmark">O N <span class="slash">/</span> M A</div>
     <div class="tagline">Your Higher Digital-Self</div>
-    <button id="beginBtn">Begin</button>
-    <div class="reflection" id="reflectionText"></div>
-    <button class="dashboard-link" id="openDashboard">Ver dashboard institucional</button>
+    <button id="beginBtn" aria-label="Comenzar reflexión">Begin</button>
+    <div class="reflection" id="reflectionText" role="status" aria-live="polite"></div>
+    <button class="dashboard-link" id="openDashboard" aria-haspopup="dialog">Ver dashboard institucional</button>
   </div>
 
-  <div class="dashboard" id="dashboard">
-    <button class="dash-close" id="closeDashboard">&times;</button>
+  <div class="dashboard" id="dashboard" role="dialog" aria-modal="true" aria-label="Dashboard institucional">
+    <button class="dash-close" id="closeDashboard" aria-label="Cerrar dashboard">&times;</button>
     <div class="dash-inner">
       <div class="dash-eyebrow">Dashboard institucional</div>
       <div class="dash-headline">La universidad recibe inteligencia — nunca conversaciones.</div>
@@ -422,7 +436,6 @@
       document.getElementById('kpiAfter').textContent = afterScore;
       document.getElementById('kpiDelta').textContent = `−${delta} puntos de riesgo tras 12 semanas con ONIMA`;
       renderBars();
-      // Trigger animation on next frame
       requestAnimationFrame(() => {
         document.querySelectorAll('.bar-fill').forEach(el => {
           const w = el.style.width;
@@ -432,9 +445,16 @@
       });
     }
 
-    document.getElementById('openDashboard').addEventListener('click', openDashboard);
-    document.getElementById('closeDashboard').addEventListener('click', () => {
+    function closeDashboard() {
       document.getElementById('dashboard').classList.remove('visible');
+    }
+
+    document.getElementById('openDashboard').addEventListener('click', openDashboard);
+    document.getElementById('closeDashboard').addEventListener('click', closeDashboard);
+
+    // Accesibilidad: permitir cerrar el dashboard con la tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDashboard();
     });
   </script>
 </body>
