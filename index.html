@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONIMA · Your Higher Digital-Self</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500&family=DM+Sans:wght@300;400&display=swap');
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f5f5;
+    --gold: #d4af37;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+  }
+
+  .wordmark {
+    font-family: 'Cormorant', serif;
+    font-weight: 500;
+    font-size: clamp(3rem, 10vw, 6rem);
+    letter-spacing: 0.4em;
+    display: flex;
+    align-items: center;
+  }
+
+  .slash {
+    display: inline-block;
+    transform: skewX(-15deg);
+    margin: 0 0.05em;
+  }
+
+  .tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    font-size: 0.85rem;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  button {
+    margin-top: 16px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 12px 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  .reflection {
+    max-width: 480px;
+    font-family: 'Cormorant', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--white);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    min-height: 60px;
+  }
+
+  .reflection.visible {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="wordmark">O N <span class="slash">/</span> M A</div>
+    <div class="tagline">Your Higher Digital-Self</div>
+    <button id="beginBtn">Begin</button>
+    <div class="reflection" id="reflectionText"></div>
+  </div>
+
+  <script>
+    const questions = [
+      "¿Quién eres cuando nadie te está viendo?",
+      "¿Qué parte de ti dejaste de escuchar?",
+      "¿Estás avanzando, o solo te estás moviendo?"
+    ];
+
+    const btn = document.getElementById('beginBtn');
+    const reflection = document.getElementById('reflectionText');
+
+    btn.addEventListener('click', () => {
+      const q = questions[Math.floor(Math.random() * questions.length)];
+      reflection.textContent = q;
+      reflection.classList.add('visible');
+    });
+  </script>
+</body>
+</html>
