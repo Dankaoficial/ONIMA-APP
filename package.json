@@ -1,6 +1,0 @@
-{
-  "name": "onima-app",
-  "scripts": {
-    "build": "npm run comando-que-no-existe"
-  }
-}
