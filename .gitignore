@@ -1,0 +1,17 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Vercel
+.vercel
+
+# Dependencias (por si se agregan en el futuro)
+node_modules/
+
+# Archivos de entorno / secretos
+.env
+.env.local
