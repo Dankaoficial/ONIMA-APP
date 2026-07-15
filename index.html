@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ONIMA · Your Higher Digital-Self</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
@@ -80,7 +81,7 @@
     </div>
   </div>
 
-  <!-- Overlay: dashboard institucional (datos simulados, tal como ya existía) -->
+  <!-- Overlay: dashboard institucional (datos simulados) -->
   <div class="overlay" id="dashboard" role="dialog" aria-modal="true" aria-label="Dashboard institucional">
     <button class="dash-close" id="closeDashboard" aria-label="Cerrar dashboard institucional">&times;</button>
     <div class="dash-inner">
@@ -138,6 +139,12 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- El orden importa: storage y questions primero (no dependen de nadie),
+       luego los dashboards, y app.js al final (conecta todo con la interfaz) -->
+  <script src="js/storage.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/institutional-dashboard.js"></script>
+  <script src="js/my-progress.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
